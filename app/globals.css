@@ -1,0 +1,129 @@
+/* globals.css
+   Global theme tokens and base styles for light and dark modes.
+   Uses CSS variables so Tailwind utility classes can reference a consistent design system.
+*/
+
+@import "tailwindcss";
+
+/* -------------------------------------------------------------------------- */
+/*                               Theme Tokens                                 */
+/* -------------------------------------------------------------------------- */
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+
+  /* Surface colors */
+  --card: rgba(255, 255, 255, 0.9);
+  --muted: rgba(91, 33, 182, 0.045);
+  --border: rgba(0, 0, 0, 0.09);
+
+  /* Primary accent */
+  --accent: #5b21b6;
+  --accent-2: #7c3aed;
+  --accent-soft: rgba(91, 33, 182, 0.12);
+  --accent-soft-2: rgba(91, 33, 182, 0.08);
+  --accent-foreground: #ffffff;
+
+  /* Secondary accent (used sparingly for bullets and small cues) */
+  --accent-alt: #0ea5e9;
+  --accent-alt-soft: rgba(14, 165, 233, 0.12);
+
+  /* Neutral project tag styling */
+  --tag-bg: rgba(17, 24, 39, 0.045);
+  --tag-text: rgba(17, 24, 39, 0.78);
+  --tag-border: rgba(0, 0, 0, 0.10);
+
+  /* Focus ring */
+  --ring: rgba(91, 33, 182, 0.32);
+
+  /* Link colors */
+  --link: var(--accent);
+  --link-hover: #4c1d95;
+}
+
+:root[data-theme="dark"] {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+
+  /* Surface colors */
+  --card: rgba(255, 255, 255, 0.08);
+  --muted: rgba(167, 139, 250, 0.09);
+  --border: rgba(255, 255, 255, 0.16);
+
+  /* Primary accent */
+  --accent: #a78bfa;
+  --accent-2: #c4b5fd;
+  --accent-soft: rgba(167, 139, 250, 0.16);
+  --accent-soft-2: rgba(167, 139, 250, 0.10);
+  --accent-foreground: #0b0b0f;
+
+  /* Secondary accent */
+  --accent-alt: #38bdf8;
+  --accent-alt-soft: rgba(56, 189, 248, 0.14);
+
+  /* Neutral project tag styling */
+  --tag-bg: rgba(255, 255, 255, 0.07);
+  --tag-text: rgba(255, 255, 255, 0.82);
+  --tag-border: rgba(255, 255, 255, 0.14);
+
+  /* Focus ring */
+  --ring: rgba(167, 139, 250, 0.44);
+
+  /* Link colors */
+  --link: var(--accent);
+  --link-hover: var(--accent-2);
+}
+
+/* Map theme tokens into Tailwind color slots */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+}
+
+/* -------------------------------------------------------------------------- */
+/*                               Base Layout                                  */
+/* -------------------------------------------------------------------------- */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                             Interaction States                             */
+/* -------------------------------------------------------------------------- */
+
+/* Links use underline on hover for consistent affordance */
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--link-hover);
+}
+
+/* Text selection */
+::selection {
+  background: var(--accent-soft);
+}
+
+/* Keyboard focus ring */
+:where(a, button, [role="button"], input, textarea, select):focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--ring);
+  border-radius: 12px;
+}
